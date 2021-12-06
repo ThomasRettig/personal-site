@@ -9,18 +9,24 @@
       <link href="https://rsms.me/inter/inter.css" rel="stylesheet" crossorigin="anonymous">
       <link href="./styles.css" rel="stylesheet">
    </head>
-   <body>
-      <h1>Hi, I’m Thomas.<span class="emoji">👋</span></h1>
+   <body id="body">
+   	<div>
+      <h1>Hi, I’m Thomas.</h1>
       <p>
          <a href="https://www.instagram.com/thomasrettig12/" target="blank"><img src="./instagram.svg" alt="Instagram logo" title="Instagram logo">Instagram</a>
       </p>
       <p>
          <a href="https://www.instagram.com/thomasrettig12/" target="blank"><img src="./twitter.svg" alt="Instagram logo" title="Twitter logo">Twitter</a>
       </p>
-
+    </div>
       <script>
          CSS.paintWorklet.addModule('./script.js');
          document.documentElement.style.setProperty('--pattern-seed', Math.random() * 10000);     
+      </script>
+      <script>
+      	var colors = ['#97F091', '#91f0e3', '#ffea54', '#e0f1ff', '#c8ffed'];
+
+      	document.getElementById("body").style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
       </script>
    </body>
 </html>

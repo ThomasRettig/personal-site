@@ -31,13 +31,13 @@ https://css-tricks.com/creating-generative-patterns-with-the-css-paint-api/
 
 @property --pattern-colors {
   syntax: "<color>#";
-  initial-value: #ffe6e6, #d7ffdf, aliceblue;
+  initial-value: #0193c1, #74d8e6, #0bc0e0, #3ddaf5, #e2f9fe, #02313f;
   inherits: true;
 }
 
 @property --pattern-speck-count {
   syntax: "<number>";
-  initial-value: 300;
+  initial-value: 350;
   inherits: true;
 }
 
@@ -49,10 +49,9 @@ https://css-tricks.com/creating-generative-patterns-with-the-css-paint-api/
 
 @property --pattern-speck-max-size {
   syntax: "<number>";
-  initial-value: 3;
+  initial-value: 4;
   inherits: true;
 }
-
 
 /*
 apply a generic focus style
@@ -67,8 +66,9 @@ stolen from Discord’s web app
 }
 
 body {
+	-webkit-text-size-adjust: 100%;
+	-webkit-font-smoothing: antialiased;
 	margin: 5vw;
-	background-color: white;
 	background-image: paint(tinySpecksPattern); /* sets the background via the Paint API */
 }
 
@@ -78,9 +78,6 @@ h1 {
 	margin: 0; /* normalize.css suggests this */
 }
 
-.emoji {
-	font-weight: normal; /* fix a bug in Windows whereby emoji is rendered as outlines when the parent’s font-weight is bold */
-}
 
 p {
 	font-family: var(--body-font);
@@ -91,10 +88,6 @@ a {
 	text-decoration: none;
 }
 
-p:not(:last-of-type) {
-	margin-bottom: -10px; /* prevent the last instance of <p> from having margin-bottom applied */
-}
-
 img {
     vertical-align: middle; /* htis makes the icon visually aligned to the accompanying text */
     margin-right: 7px;
@@ -102,4 +95,12 @@ img {
     /* prevent the “kissing” of the icon and text
     TODO: find out if there is a better way to solve this with flexbox
     */
+}
+
+div {
+    background-color: #ffffff9e;
+    display: inline-block;
+    border-radius: 12px;
+    padding: 20px;
+    backdrop-filter: blur(5px) saturate(1.5);
 }
