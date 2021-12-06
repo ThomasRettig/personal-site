@@ -88,8 +88,7 @@ p {
 
 a {
 	color: inherit;
-	text-decoration-thickness: 0.5px;
-	text-underline-offset: 1px;
+	text-decoration: none;
 }
 
 p:not(:last-of-type) {
@@ -99,6 +98,7 @@ p:not(:last-of-type) {
 img {
     vertical-align: middle; /* htis makes the icon visually aligned to the accompanying text */
     margin-right: 7px;
+    user-select: none;
     /* prevent the “kissing” of the icon and text
     TODO: find out if there is a better way to solve this with flexbox
     */
