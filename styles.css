@@ -1,0 +1,105 @@
+:root {
+	--heading-font: 'InterDisplay', system-ui, sans-serif;
+	--body-font: 'Inter', system-ui, sans-serif;
+}
+
+/*
+if the browser support variable fonts
+serve the variable version of Inter instead via the @supports query
+https://css-tricks.com/how-supports-works/
+*/
+
+@supports (font-variation-settings: normal) {
+	:root {
+		--heading-font: 'InterDisplay var', system-ui, sans-serif;
+		--body-font: 'Inter var', system-ui, sans-serif;
+	}
+}
+
+/*
+set some CSS properties to be used by our Paint API later
+note that browser support is not very good as of Decemeber 2021
+but we aren’t using this to serve essential content
+https://css-tricks.com/creating-generative-patterns-with-the-css-paint-api/
+*/
+
+@property --pattern-seed {
+  syntax: "<number>";
+  initial-value: 1000;
+  inherits: true;
+}
+
+@property --pattern-colors {
+  syntax: "<color>#";
+  initial-value: #ffe6e6, #d7ffdf, aliceblue;
+  inherits: true;
+}
+
+@property --pattern-speck-count {
+  syntax: "<number>";
+  initial-value: 300;
+  inherits: true;
+}
+
+@property --pattern-speck-min-size {
+  syntax: "<number>";
+  initial-value: 0;
+  inherits: true;
+}
+
+@property --pattern-speck-max-size {
+  syntax: "<number>";
+  initial-value: 3;
+  inherits: true;
+}
+
+
+/*
+apply a generic focus style
+stolen from Discord’s web app
+*/
+
+:focus {
+	border-color: #0060df;
+	box-shadow: 0 0 0 2px rgb(0 144 237/.5);
+	outline: 0;
+	border-radius: 2px;
+}
+
+body {
+	margin: 5vw;
+	background-color: white;
+	background-image: paint(tinySpecksPattern); /* sets the background via the Paint API */
+}
+
+h1 {
+	font-family: var(--heading-font);
+	font-variation-settings: "wght" 750;
+	margin: 0; /* normalize.css suggests this */
+}
+
+.emoji {
+	font-weight: normal; /* fix a bug in Windows whereby emoji is rendered as outlines when the parent’s font-weight is bold */
+}
+
+p {
+	font-family: var(--body-font);
+}
+
+a {
+	color: inherit;
+	text-decoration-thickness: 0.5px;
+	text-underline-offset: 1px;
+}
+
+p:not(:last-of-type) {
+	margin-bottom: -10px; /* prevent the last instance of <p> from having margin-bottom applied */
+}
+
+img {
+    vertical-align: middle; /* htis makes the icon visually aligned to the accompanying text */
+    margin-right: 7px;
+    /* prevent the “kissing” of the icon and text
+    TODO: find out if there is a better way to solve this with flexbox
+    */
+}
