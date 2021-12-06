@@ -17,26 +17,26 @@
          <a href="https://www.instagram.com/thomasrettig12/" target="blank"><img src="./instagram.svg" alt="Instagram logo" title="Instagram logo">Instagram</a>
       </p>
       <p>
-         <a href="https://www.instagram.com/thomasrettig12/" target="blank"><img src="./twitter.svg" alt="Instagram logo" title="Twitter logo">Twitter</a>
+         <a href="https://www.instagram.com/thomasrettig12/" target="blank"><img src="./twitter.svg" alt="Twitter logo" title="Twitter logo">Twitter</a>
       </p>
     </div>
       <script>
+      	// CSS Paint API
          CSS.paintWorklet.addModule('./script.js');
          document.documentElement.style.setProperty('--pattern-seed', Math.random() * 10000);     
-      </script>
-      <script>
+
+      	// generate random background colour everytime the user refreshes the page
       	var colors = ['#97F091', '#91f0e3', '#ffea54', '#e0f1ff', '#c8ffed', '#b0e8f5'];
 
       	document.getElementById("body").style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-      </script>
-      <script>
+
+      	// randomly position our div
       	const getRandom = (min, max) => Math.floor(Math.random()*(max-min+1)+min);
 
       	const square= document.querySelector('#square');
       	
       	   square.style.left= getRandom(0, 300 - 290)+'px'; // Horizontally
       	   square.style.top = getRandom(0, 300 - 290)+'px'; // Vertically
-      	    
       </script>
    </body>
 </html>
