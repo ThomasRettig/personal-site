@@ -1,1 +1,18 @@
-<svg width="423" height="423" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#a)"><circle cx="211.5" cy="211.5" r="211.5" fill="#F1FFEF"/><path d="M283 127h-44V68h-78v59h-33v57h33v119c-1 50 32 75 87 73 18-1 32-5 40-8l-12-56-17 2c-13 0-20-5-20-19V184h44v-57Z" fill="#0C252F"/></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h423v423H0z"/></clipPath></defs></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="423" height="423" fill="none">
+  <style>
+  	/* dark mode */
+  	@media (prefers-color-scheme: dark) {
+	  	.main {
+	  		fill: white;
+	  	}
+	}
+  </style>
+  <g clip-path="url(#a)">
+    <path class="main" d="M283 127h-44V68h-78v59h-33v57h33v119c-1 50 32 75 87 73 18-1 32-5 40-8l-12-56-17 2c-13 0-20-5-20-19V184h44v-57Z" fill="black" />
+  </g>
+  <defs>
+    <clipPath id="a">
+      <path fill="black" d="M0 0h423v423H0z" />
+    </clipPath>
+  </defs>
+</svg>

@@ -1,6 +1,6 @@
 :root {
-	--heading-font: 'InterDisplay', system-ui, sans-serif;
-	--body-font: 'Inter', system-ui, sans-serif;
+    --heading-font: 'InterDisplay', system-ui, sans-serif;
+    --body-font: 'Inter', system-ui, sans-serif;
 }
 
 /*
@@ -8,12 +8,11 @@ if the browser support variable fonts
 serve the variable version of Inter instead via the @supports query
 https://css-tricks.com/how-supports-works/
 */
-
 @supports (font-variation-settings: normal) {
-	:root {
-		--heading-font: 'InterDisplay var', system-ui, sans-serif;
-		--body-font: 'Inter var', system-ui, sans-serif;
-	}
+    :root {
+        --heading-font: 'InterDisplay var', system-ui, sans-serif;
+        --body-font: 'Inter var', system-ui, sans-serif;
+    }
 }
 
 /*
@@ -22,74 +21,74 @@ note that browser support is not very good as of Decemeber 2021
 but we aren’t using this to serve essential content
 https://css-tricks.com/creating-generative-patterns-with-the-css-paint-api/
 */
-
 @property --pattern-seed {
-  syntax: "<number>";
-  initial-value: 1000;
-  inherits: true;
+    syntax: "<number>";
+    initial-value: 1000;
+    inherits: true;
 }
 
 @property --pattern-colors {
-  syntax: "<color>#";
-  initial-value: #0193c1, #74d8e6, #0bc0e0, #3ddaf5, #e2f9fe, #02313f;
-  inherits: true;
+    syntax: "<color>#";
+    initial-value: #0193c1, #74d8e6, #0bc0e0, #3ddaf5, #e2f9fe, #02313f;
+    inherits: true;
 }
 
 @property --pattern-speck-count {
-  syntax: "<number>";
-  initial-value: 350;
-  inherits: true;
+    syntax: "<number>";
+    initial-value: 350;
+    inherits: true;
 }
 
 @property --pattern-speck-min-size {
-  syntax: "<number>";
-  initial-value: 0;
-  inherits: true;
+    syntax: "<number>";
+    initial-value: 0;
+    inherits: true;
 }
 
 @property --pattern-speck-max-size {
-  syntax: "<number>";
-  initial-value: 4;
-  inherits: true;
+    syntax: "<number>";
+    initial-value: 4;
+    inherits: true;
 }
 
 /*
 apply a generic focus style
 stolen from Discord’s web app
 */
-
 :focus {
-	border-color: #0060df;
-	box-shadow: 0 0 0 2px rgb(0 144 237/.5);
-	outline: 0;
-	border-radius: 2px;
+    border-color: #0060df;
+    box-shadow: 0 0 0 2px rgb(0 144 237/.5);
+    outline: 0;
+    border-radius: 2px;
 }
 
 body {
-	-webkit-text-size-adjust: 100%;
-	-webkit-font-smoothing: antialiased;
-	margin: 5vw;
-	background-image: paint(tinySpecksPattern); /* sets the background via the Paint API */
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    margin: 5vw;
+    background-image: paint(tinySpecksPattern);
+    /* sets the background via the Paint API */
 }
 
 h1 {
-	font-family: var(--heading-font);
-	font-variation-settings: "wght" 750;
-	margin: 0; /* normalize.css suggests this */
+    font-family: var(--heading-font);
+    font-variation-settings: "wght" 750;
+    margin: 0;
+    /* normalize.css suggests this */
 }
 
-
 p {
-	font-family: var(--body-font);
+    font-family: var(--body-font);
 }
 
 a {
-	color: inherit;
-	text-decoration: none;
+    color: inherit;
+    text-decoration: none;
 }
 
 img {
-    vertical-align: middle; /* htis makes the icon visually aligned to the accompanying text */
+    vertical-align: middle;
+    /* htis makes the icon visually aligned to the accompanying text */
     margin-right: 7px;
     user-select: none;
     /* prevent the “kissing” of the icon and text
@@ -99,8 +98,11 @@ img {
 
 div {
     background-color: #ffffff9e;
-    display: inline-block;
     border-radius: 12px;
+    aspect-ratio: 4 / 3;
+    height: 150px;
     padding: 20px;
     backdrop-filter: blur(5px) saturate(1.5);
+    position: relative;
+    box-shadow: 0 0 20px 0px #83838314;
 }
