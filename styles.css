@@ -103,6 +103,11 @@ div {
     height: 150px;
     padding: 20px;
     backdrop-filter: blur(5px) saturate(1.5);
-    position: relative;
     box-shadow: 0 0 20px 0px #83838314;
+}
+
+@media screen and (min-width: 550px) {
+	div {
+		position: relative;
+	}
 }
