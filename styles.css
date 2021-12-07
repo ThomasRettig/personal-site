@@ -55,6 +55,7 @@ https://css-tricks.com/creating-generative-patterns-with-the-css-paint-api/
 apply a generic focus style
 stolen from Discord’s web app
 */
+
 :focus {
     border-color: #0060df;
     box-shadow: 0 0 0 2px rgb(0 144 237/.5);
@@ -65,20 +66,24 @@ stolen from Discord’s web app
 body {
     -webkit-text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
+    overflow-y: hidden;
     margin: 5vw;
+    user-select: none;
     background-image: paint(tinySpecksPattern);
-    /* sets the background via the Paint API */
+    
+    /* set the background via the Paint API */
 }
 
 h1 {
     font-family: var(--heading-font);
     font-variation-settings: "wght" 750;
     margin: 0;
-    /* normalize.css suggests this */
+    /* normalize.css suggests resetting margin to zero */
 }
 
 p {
     font-family: var(--body-font);
+    font-feature-settings: "cv06";
 }
 
 a {
@@ -88,7 +93,7 @@ a {
 
 img {
     vertical-align: middle;
-    /* htis makes the icon visually aligned to the accompanying text */
+    /* this makes the icon visually aligned to the accompanying text */
     margin-right: 7px;
     user-select: none;
     /* prevent the “kissing” of the icon and text
@@ -96,7 +101,7 @@ img {
     */
 }
 
-div {
+#square {
     background-color: #ffffff9e;
     border-radius: 12px;
     aspect-ratio: 4 / 3;

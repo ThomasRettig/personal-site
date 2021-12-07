@@ -8,35 +8,38 @@
       <link href="https://rsms.me/inter/inter-display.css" rel="stylesheet" crossorigin="anonymous">
       <link href="https://rsms.me/inter/inter.css" rel="stylesheet" crossorigin="anonymous">
       <link href="./styles.css" rel="stylesheet">
+      <!-- misc -->
+      <meta name="description" content="The personal site of Thomas Rettig. Find out my social media accounts by visting my site!"/>
    </head>
-   <body id="body">
+   <body id="body"> 
    	<div id="square">
-      <h1>Hi!</h1>
+      <h1>Hi…</h1>
       <p>I’m Thomas.</p>
       <p>
-         <a href="https://www.instagram.com/thomasrettig12/" target="blank"><img src="./instagram.svg" alt="Instagram logo" title="Instagram logo">Instagram</a>
+         <a href="https://www.instagram.com/thomasrettig12/" target="blank" title="View my Instagram profile"><img src="./instagram.svg" alt="Instagram logo" title="Instagram logo">Instagram</a>
       </p>
       <p>
-         <a href="https://www.instagram.com/thomasrettig12/" target="blank"><img src="./twitter.svg" alt="Twitter logo" title="Twitter logo">Twitter</a>
+         <a href="https://www.instagram.com/thomasrettig12/" target="blank" title="View my Twitter profile"><img src="./twitter.svg" alt="Twitter logo" title="Twitter logo">Twitter</a>
       </p>
     </div>
       <script>
       	// CSS Paint API
          CSS.paintWorklet.addModule('./script.js');
-         document.documentElement.style.setProperty('--pattern-seed', Math.random() * 10000);     
-
+         document.documentElement.style.setProperty('--pattern-seed', Math.random() * 10000);
+      </script> 
+      <script> 
       	// generate random background colour everytime the user refreshes the page
-      	var colors = ['#97F091', '#91f0e3', '#ffea54', '#e0f1ff', '#c8ffed', '#b0e8f5'];
+      	var colours = ['#97F091', '#91f0e3', '#ffea54', '#e0f1ff', '#c8ffed', '#b0e8f5'];
 
-      	document.getElementById("body").style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      	document.getElementById("body").style.backgroundColor = colours[Math.floor(Math.random() * colours.length)];
 
       	// randomly position our div
       	const getRandom = (min, max) => Math.floor(Math.random()*(max-min+1)+min);
 
       	const square= document.querySelector('#square');
       	
-      	   square.style.left= getRandom(0, 300 - 290)+'px'; // Horizontally
-      	   square.style.top = getRandom(0, 300 - 290)+'px'; // Vertically
+      	   square.style.left= getRandom(0, 300 - 150)+'px'; // Horizontally
+      	   square.style.top = getRandom(0, 300 - 30)+'px'; // Vertically
       </script>
    </body>
 </html>
