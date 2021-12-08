@@ -1,18 +1,24 @@
-:root {
-    --heading-font: 'InterDisplay', system-ui, sans-serif;
-    --body-font: 'Inter', system-ui, sans-serif;
+@font-face {
+  font-family: 'Inter var';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('./fonts/Inter.woff2') format('woff2');
+  font-named-instance: 'Regular';
 }
 
-/*
-if the browser support variable fonts
-serve the variable version of Inter instead via the @supports query
-https://css-tricks.com/how-supports-works/
-*/
-@supports (font-variation-settings: normal) {
-    :root {
-        --heading-font: 'InterDisplay var', system-ui, sans-serif;
-        --body-font: 'Inter var', system-ui, sans-serif;
-    }
+@font-face {
+  font-family: 'InterDisplay var';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('./fonts/InterDisplay.woff2') format('woff2');
+  font-named-instance: 'Regular';
+}
+
+:root {
+    --heading-font: 'InterDisplay var', system-ui, sans-serif;
+    --body-font: 'Inter var', system-ui, sans-serif;
 }
 
 /*
@@ -107,12 +113,12 @@ img {
     aspect-ratio: 4 / 3;
     height: 150px;
     padding: 20px;
-    backdrop-filter: blur(5px) saturate(1.5);
-    box-shadow: 0 0 20px 0px #83838314;
+    backdrop-filter: blur(5px) saturate(1.5); /* add a glassy background */
+    box-shadow: 0 0 20px 0px #83838314; /* improve contrast */
 }
 
 @media screen and (min-width: 550px) {
 	div {
-		position: relative;
+		position: relative; /* improve mobile experience */
 	}
 }

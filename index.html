@@ -4,42 +4,146 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>Thomas Rettig</title>
-      <link rel="icon" type="image/svg+xml" href="./favicon.svg">
-      <link href="https://rsms.me/inter/inter-display.css" rel="stylesheet" crossorigin="anonymous">
-      <link href="https://rsms.me/inter/inter.css" rel="stylesheet" crossorigin="anonymous">
       <link href="./styles.css" rel="stylesheet">
-      <!-- misc -->
-      <meta name="description" content="The personal site of Thomas Rettig. Find out my social media accounts by visting my site!"/>
+      <!-- PWA -->
+      <link rel="manifest" href="./manifest.json"/>
+      <meta name="mobile-web-app-capable" content="yes">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta name="application-name" content="Thomas Rettig">
+      <meta name="apple-mobile-web-app-title" content="Thomas Rettig">
+      <meta name="theme-color" content="#97F091">
+      <!-- favicons -->
+      <link rel="apple-touch-icon" type="image/svg+xml" sizes="32x32" href="./favicon.svg">
+      <!-- scripts -->
+      <script src="./paint.js"></script>
    </head>
-   <body id="body"> 
-   	<div id="square">
-      <h1>Hi…</h1>
-      <p>I’m Thomas.</p>
-      <p>
-         <a href="https://www.instagram.com/thomasrettig12/" target="blank" title="View my Instagram profile"><img src="./instagram.svg" alt="Instagram logo" title="Instagram logo">Instagram</a>
-      </p>
-      <p>
-         <a href="https://www.instagram.com/thomasrettig12/" target="blank" title="View my Twitter profile"><img src="./twitter.svg" alt="Twitter logo" title="Twitter logo">Twitter</a>
-      </p>
-    </div>
-      <script>
-      	// CSS Paint API
-         CSS.paintWorklet.addModule('./script.js');
-         document.documentElement.style.setProperty('--pattern-seed', Math.random() * 10000);
-      </script> 
+   <body id="body">
+      <div id="square">
+         <h1>Hi…</h1>
+         <p>I’m Thomas.</p>
+         <p>
+            <a href="https://www.instagram.com/thomasrettig12/" target="blank" title="View my Instagram profile"><img src="./instagram.svg" alt="Instagram logo" title="Instagram logo">Instagram</a>
+         </p>
+         <p>
+            <a href="https://www.instagram.com/thomasrettig12/" target="blank" title="View my Twitter profile"><img src="./twitter.svg" alt="Twitter logo" title="Twitter logo">Twitter</a>
+         </p>
+      </div>
       <script> 
-      	// generate random background colour everytime the user refreshes the page
-      	var colours = ['#97F091', '#91f0e3', '#ffea54', '#e0f1ff', '#c8ffed', '#b0e8f5'];
+         // generate random background colour everytime the user refreshes the page
+         var colours = ['#97F091', '#91f0e3', '#ffea54', '#e0f1ff', '#c8ffed', '#b0e8f5'];
+         
+         document.getElementById("body").style.backgroundColor = colours[Math.floor(Math.random() * colours.length)];
+         
+         // randomly position our div
+         const getRandom = (min, max) => Math.floor(Math.random()*(max-min+1)+min);
+         
+         const square= document.querySelector('#square');
+         
+            square.style.left= getRandom(0, 300 - 150)+'px'; // Horizontally
+            square.style.top = getRandom(0, 300 - 30)+'px'; // Vertically
+      </script>
+      <script>
+         if ('serviceWorker' in navigator) {
+           window.addEventListener('load', function() {
+             navigator.serviceWorker.register('/sw.js').then(function(registration) {
+               // Registration was successful
+               console.log('ServiceWorker registration successful with scope: ', registration.scope);
+             }, function(err) {
+               // registration failed :(
+               console.log('ServiceWorker registration failed: ', err);
+             });
+           });
+         }
+         
+         self.addEventListener('install', function(event) {
+           // Perform install steps
+         });
+         
+         var CACHE_NAME = 'my-site-cache-v1';
+         var urlsToCache = [
+           '/',
+           './styles.css',
+           '.paint.js',
+           '.script.js',
+           './fonts/InterDisplay.woff2',
+           './fonts/Inter.woff2'
+         ];
+         
+         self.addEventListener('install', function(event) {
+           // Perform install steps
+           event.waitUntil(
+             caches.open(CACHE_NAME)
+               .then(function(cache) {
+                 console.log('Opened cache');
+                 return cache.addAll(urlsToCache);
+               })
+           );
+         });
 
-      	document.getElementById("body").style.backgroundColor = colours[Math.floor(Math.random() * colours.length)];
+         self.addEventListener('fetch', function(event) {
+           event.respondWith(
+             caches.match(event.request)
+               .then(function(response) {
+                 // Cache hit - return response
+                 if (response) {
+                   return response;
+                 }
+                 return fetch(event.request);
+               }
+             )
+           );
+         });
 
-      	// randomly position our div
-      	const getRandom = (min, max) => Math.floor(Math.random()*(max-min+1)+min);
+         self.addEventListener('fetch', function(event) {
+           event.respondWith(
+             caches.match(event.request)
+               .then(function(response) {
+                 // Cache hit - return response
+                 if (response) {
+                   return response;
+                 }
 
-      	const square= document.querySelector('#square');
-      	
-      	   square.style.left= getRandom(0, 300 - 150)+'px'; // Horizontally
-      	   square.style.top = getRandom(0, 300 - 30)+'px'; // Vertically
+                 return fetch(event.request).then(
+                   function(response) {
+                     // Check if we received a valid response
+                     if(!response || response.status !== 200 || response.type !== 'basic') {
+                       return response;
+                     }
+
+                     // IMPORTANT: Clone the response. A response is a stream
+                     // and because we want the browser to consume the response
+                     // as well as the cache consuming the response, we need
+                     // to clone it so we have two streams.
+                     var responseToCache = response.clone();
+
+                     caches.open(CACHE_NAME)
+                       .then(function(cache) {
+                         cache.put(event.request, responseToCache);
+                       });
+
+                     return response;
+                   }
+                 );
+               })
+             );
+         });
+
+         self.addEventListener('activate', function(event) {
+
+           var cacheAllowlist = ['pages-cache-v1', 'blog-posts-cache-v1'];
+
+           event.waitUntil(
+             caches.keys().then(function(cacheNames) {
+               return Promise.all(
+                 cacheNames.map(function(cacheName) {
+                   if (cacheAllowlist.indexOf(cacheName) === -1) {
+                     return caches.delete(cacheName);
+                   }
+                 })
+               );
+             })
+           );
+         });
       </script>
    </body>
 </html>

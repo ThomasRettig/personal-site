@@ -1,0 +1,15 @@
+{
+  "name": "Thomas Rettig’s Website",
+  "short_name": "Thomas Rettig",
+  "lang": "en-US",
+  "start_url": "/",
+  "display": "minimal-ui",
+  "theme_color": "#97F091",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "423x423",
+      "type": "image/svg+xml"
+    }
+  ]
+}
